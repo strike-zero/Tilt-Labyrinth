@@ -17,7 +17,6 @@ public class RandomTilt : MonoBehaviour {
 
     void Tilting()
     {
-        //yield return new WaitForSeconds(1);
         tilt = Random.Range(-15, 15);
     }
 }

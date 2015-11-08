@@ -22,6 +22,11 @@ public class LoadAScene : MonoBehaviour {
         Application.LoadLevel("Playmode");
     }
 
+    public void goToTestLevel()
+    {
+        Application.LoadLevel("TestLevelGenerator");
+    }
+
     public void exitGame()
     {
         Application.Quit();

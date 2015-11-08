@@ -5,13 +5,13 @@ using UnityEngine.UI;
 public class PauseScript : MonoBehaviour {
     public GameObject PauseScreen;
     public GameObject PauseButton;
+    public GameObject AmmoUI;
     public Slider slider;
     public float maxSpeed = 60;
 
     public void ResumeGame()
     {
-        PauseScreen.SetActive(false);
-        PauseButton.SetActive(true);
+        GamePaused(false);
         SetSensitivity();
         ReorientDevice();
         Time.timeScale = 1;
@@ -26,8 +26,7 @@ public class PauseScript : MonoBehaviour {
     public void PauseGame()
     {
         Time.timeScale = 0;
-        PauseScreen.SetActive(true);
-        PauseButton.SetActive(false);
+        GamePaused(true);
     }
 
     void SetSensitivity()
@@ -40,5 +39,12 @@ public class PauseScript : MonoBehaviour {
         AccelerometerTest.initTilt = Vector3.zero;
         AccelerometerTest.initTilt.y = Input.acceleration.y;
         AccelerometerTest.initTilt.x = Input.acceleration.x;
+    }
+
+    void GamePaused(bool active)
+    {
+        PauseScreen.SetActive(active);
+        PauseButton.SetActive(!active);
+        AmmoUI.SetActive(!active);
     }
 }

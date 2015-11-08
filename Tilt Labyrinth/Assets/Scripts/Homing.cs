@@ -11,15 +11,12 @@ public class Homing : MonoBehaviour {
     private float distance = Mathf.Infinity;
 
     void Start()
-    {
-
+    { 
         Fire();
         StartCoroutine(SelfDestruct());
-
     }
 
     void FixedUpdate()
-
     {
         if (homingMissile == null)
             return;
@@ -33,7 +30,6 @@ public class Homing : MonoBehaviour {
                 distance = diff;
                 target = go.transform;
             }
-
         }
 
         if (target == null)
@@ -43,7 +39,7 @@ public class Homing : MonoBehaviour {
         }
 
         homingMissile.velocity = transform.right * missileVelocity;
-        //end test code
+
         Vector3 vectorToTarget = target.position - transform.position;
         float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -51,11 +47,8 @@ public class Homing : MonoBehaviour {
     }
 
     void Fire()
-
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        transform.rotation = player.transform.rotation * Quaternion.Euler(0, 0, 90f);
-
+        transform.rotation = transform.rotation * Quaternion.Euler(0, 0, 90f);
     }
 
     void OnTriggerEnter2D(Collider2D other)

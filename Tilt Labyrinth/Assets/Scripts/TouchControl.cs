@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class TouchControl : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class TouchControl : MonoBehaviour
     public int ammoType = 0;
     public float swipeLength = 15;
     private float swipeDist = 0;
+    public Text ammo;
 
 
     void Start()
@@ -76,6 +78,7 @@ public class TouchControl : MonoBehaviour
                                 ammoType++;
                             else
                                 ammoType = 0;
+                            ammoName(ammoType);
                             Debug.Log("ammoType " + ammoType + " dist: " + swipeDist + " threshold: " + swipeLength);
                         }
                         //swipe motion down
@@ -86,6 +89,7 @@ public class TouchControl : MonoBehaviour
                                 ammoType--;
                             else
                                 ammoType = 2;
+                            ammoName(ammoType);
                             Debug.Log("ammoType " + ammoType + " dist: " + swipeDist + " threshold: " + swipeLength);
                         }
                         else
@@ -100,6 +104,7 @@ public class TouchControl : MonoBehaviour
                                     {
                                         Instantiate(missile, transform.position, transform.rotation);
                                         missileCount--;
+                                        ammo.text = "MISSILES x " + missileCount;
                                     }
                                     break;
                                 case 2:
@@ -107,6 +112,7 @@ public class TouchControl : MonoBehaviour
                                     {
                                         Instantiate(bomb, transform.position, transform.rotation);
                                         bombCount--;
+                                        ammo.text = "BOMBS x " + bombCount;
                                     }
                                     break;
                             }
@@ -115,6 +121,22 @@ public class TouchControl : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    void ammoName(int type)
+    {
+        switch (type)
+        {
+            case 0:
+                ammo.text = "BULLETS";
+                break;
+            case 1:
+                ammo.text = "MISSILES x " + missileCount;
+                break;
+            case 2:
+                ammo.text = "BOMBS x " + bombCount;
+                break;
         }
     }
 }
