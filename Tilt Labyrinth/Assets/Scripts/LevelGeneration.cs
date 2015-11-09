@@ -35,7 +35,7 @@ public class LevelGeneration : MonoBehaviour {
     //outside boundaries
     void BuildWall()
     {
-        int dist = (levelSize * roomSize) + (roomSize / 2);
+        int dist = (levelSize * roomSize) + (roomSize / 2) + (wallThickness / 2);
 
         //build edges
         for(int i = -levelSize; i <= levelSize; i++)
@@ -47,10 +47,11 @@ public class LevelGeneration : MonoBehaviour {
             GameObject southWall = Instantiate(wall, new Vector3(pos, -dist), Quaternion.Euler(0, 0, 0)) as GameObject;
 
             //scale walls
-            eastWall.transform.localScale = new Vector3(roomSize, wallThickness);
-            westWall.transform.localScale = new Vector3(roomSize, wallThickness);
-            northWall.transform.localScale = new Vector3(roomSize, wallThickness);
-            southWall.transform.localScale = new Vector3(roomSize, wallThickness);
+            Vector3 wallScale = new Vector3(roomSize, wallThickness);
+            eastWall.transform.localScale = wallScale;
+            westWall.transform.localScale = wallScale;
+            northWall.transform.localScale = wallScale;
+            southWall.transform.localScale = wallScale;
         }
 
         //build corners
@@ -60,10 +61,11 @@ public class LevelGeneration : MonoBehaviour {
         GameObject SWcorner = Instantiate(wall, new Vector3(-dist, -dist), Quaternion.Euler(0, 0, 0)) as GameObject;
 
         //scale corners
-        NEcorner.transform.localScale = new Vector3(wallThickness * 2, wallThickness * 2);
-        NWcorner.transform.localScale = new Vector3(wallThickness * 2, wallThickness * 2);
-        SEcorner.transform.localScale = new Vector3(wallThickness * 2, wallThickness * 2);
-        SWcorner.transform.localScale = new Vector3(wallThickness * 2, wallThickness * 2);
+        Vector3 cornerScale = new Vector3(wallThickness, wallThickness);
+        NEcorner.transform.localScale = cornerScale;
+        NWcorner.transform.localScale = cornerScale;
+        SEcorner.transform.localScale = cornerScale;
+        SWcorner.transform.localScale = cornerScale;
     }
 
     void BuildSection(int type, int row, int column)

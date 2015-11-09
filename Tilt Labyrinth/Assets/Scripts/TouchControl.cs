@@ -53,8 +53,8 @@ public class TouchControl : MonoBehaviour
                     {
                         Vector2 vectorToTarget = touch.position - touchLeft;
                         float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-                        Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-                        transform.rotation = Quaternion.Slerp(transform.rotation, q, 1) * Quaternion.Euler(0, 0, -90);
+                        Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward) * Quaternion.Euler(0, 0, -90);
+                        transform.rotation = Quaternion.Slerp(transform.rotation, q, 1);
                     }
                     if (touch.fingerId == rightFinger)
                     {

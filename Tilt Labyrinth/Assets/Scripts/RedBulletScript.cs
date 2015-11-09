@@ -4,18 +4,13 @@ using System.Collections;
 public class RedBulletScript : MonoBehaviour {
     public float speed = 25;
     public float decay = 3;
-    public int damage = 25;
+    public int damage = 5;
     public Rigidbody2D bullet;
 
     void Start()
     {
         StartCoroutine(SelfDestruct());
         bullet.velocity = transform.up * speed;
-    }
-
-    void FixedUpdate()
-    {
-        
     }
 
     private IEnumerator SelfDestruct()
@@ -26,11 +21,17 @@ public class RedBulletScript : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag != "Enemy" && other.gameObject.tag == "Player")
+        if (other.gameObject.tag != "Enemy")
         {
-            Destroy(gameObject);
-            other.SendMessage("TakeDamage", damage);
+            if (other.gameObject.tag == "Player")
+            {
+                GameObject target = other.gameObject;
+                target.SendMessageUpwards("TakeDamage", damage);
+                Destroy(gameObject);
+            }
+            //Destroy(gameObject);
         }
+
             
     }
 }

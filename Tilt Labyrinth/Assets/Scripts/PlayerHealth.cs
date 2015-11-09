@@ -9,18 +9,15 @@ public class PlayerHealth : MonoBehaviour {
     public Color midHealthColor = Color.yellow;
     public Color minHealthColor = Color.red;
     public float hitPoints = 100;
-
-    void FixedUpdate()
-    {
-        if (hitPoints <= 0)
-        {
-            Destroy(gameObject);
-        }
-    }
+    public float maxHitPoints = 100;
 
     public void TakeDamage(float damage)
     {
         hitPoints -= damage;
+        lifeBar.value = hitPoints / maxHitPoints;
+        LifebarColor();
+        if (hitPoints <= 0)
+            Destroy(gameObject);
         Debug.Log("Life:" + hitPoints);
     }
 

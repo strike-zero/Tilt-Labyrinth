@@ -20,11 +20,16 @@ public class Bullets : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Enemy" && other.gameObject.tag != "Player")
+        if (other.gameObject.tag != "Player")
         {
-            //other.gameObject.SendMessage("TakeDamage", damage);
-            other.gameObject.GetComponent<RedTankScript>().TakeDamage(damage);
-            Destroy(gameObject);
+            if (other.gameObject.tag == "Enemy")
+            {
+                GameObject target = other.gameObject;
+                target.SendMessageUpwards("TakeDamage", damage);
+                Destroy(gameObject);
+            }
+            //Destroy(gameObject);
         }
+
     }
 }

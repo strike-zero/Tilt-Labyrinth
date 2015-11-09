@@ -12,10 +12,11 @@ public class RedTankScript : MonoBehaviour {
     public GameObject turret;
     private float cooldown = 0;
     public float fireRate = 0.75f;
+    public float turretSpeed = 3;
 
 	// Use this for initialization
 	void Start () {
-        InvokeRepeating("ChangeRotation", 0, 2);
+        Invoke("ChangeRotation", 0);
         
 	}
 	
@@ -35,7 +36,7 @@ public class RedTankScript : MonoBehaviour {
                 Vector3 aimDirection = hit.transform.position - transform.position;
                 float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
                 Quaternion aimRotation = Quaternion.AngleAxis(angle, Vector3.forward) * Quaternion.Euler(0, 0, -90);
-                turret.transform.rotation = Quaternion.Slerp(turret.transform.rotation,aimRotation, Time.deltaTime * 5);
+                turret.transform.rotation = Quaternion.Slerp(turret.transform.rotation, aimRotation, Time.deltaTime * turretSpeed);
 
                 //controls the firing rate
                 if (cooldown <= 0)
@@ -47,7 +48,7 @@ public class RedTankScript : MonoBehaviour {
             }
         }
         if(!inRange)
-            turret.transform.rotation = Quaternion.Slerp(turret.transform.rotation, transform.rotation, Time.deltaTime * 5);
+            turret.transform.rotation = Quaternion.Slerp(turret.transform.rotation, transform.rotation, Time.deltaTime * turretSpeed);
         cooldown -= Time.deltaTime;
     }
 
@@ -65,6 +66,7 @@ public class RedTankScript : MonoBehaviour {
     void ChangeRotation()
     {
         targetRotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
+        Invoke("ChangeRotation", Random.Range(1f, 3.5f));
     }
 
     void TurnAround()
@@ -76,5 +78,7 @@ public class RedTankScript : MonoBehaviour {
     public void TakeDamage(float damage)
     {
         hitPoints -= damage;
+        if (hitPoints <= 0)
+            Destroy(gameObject);
     }
 }
