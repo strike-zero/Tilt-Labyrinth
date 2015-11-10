@@ -54,7 +54,7 @@ public class RedTankScript : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag != "Bullet")
+        if (other.gameObject.tag != "Projectile")
             TurnAround();
     }
 
