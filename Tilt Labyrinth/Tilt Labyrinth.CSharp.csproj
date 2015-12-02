@@ -87,7 +87,10 @@
     <Compile Include="Assets\Scripts\BulletLauncher.cs" />
     <Compile Include="Assets\Scripts\BulletScript.cs" />
     <Compile Include="Assets\Scripts\Bullets.cs" />
+    <Compile Include="Assets\Scripts\ContinueScript.cs" />
+    <Compile Include="Assets\Scripts\ExplosionScript.cs" />
     <Compile Include="Assets\Scripts\FollowPlayer.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Homing.cs" />
     <Compile Include="Assets\Scripts\LevelGeneration.cs" />
     <Compile Include="Assets\Scripts\LoadAScene.cs" />
@@ -97,6 +100,7 @@
     <Compile Include="Assets\Scripts\RandomTilt.cs" />
     <Compile Include="Assets\Scripts\RedBulletScript.cs" />
     <Compile Include="Assets\Scripts\RedTankScript.cs" />
+    <Compile Include="Assets\Scripts\SmokeScript.cs" />
     <Compile Include="Assets\Scripts\TouchControl.cs" />
   </ItemGroup>
   <ItemGroup>

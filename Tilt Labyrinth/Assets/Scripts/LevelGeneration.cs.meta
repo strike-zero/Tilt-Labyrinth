@@ -1,10 +1,14 @@
 fileFormatVersion: 2
 guid: 0a18200b04d93294a957b5eaf89cf1f5
-timeCreated: 1446593895
+timeCreated: 1447684681
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - wall: {fileID: 164294, guid: 4e700be7958308448b6c319ebae4ad24, type: 2}
+  - enemy1: {fileID: 157794, guid: 762330e153aab9242a2ccbc61ce25f39, type: 2}
+  - enemy2: {fileID: 139960, guid: f92d219812d7604428e0e6ec8f928f9c, type: 2}
+  - enemy3: {fileID: 131296, guid: 2e02f7af34a3fcf488471e7bcacb7c6f, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

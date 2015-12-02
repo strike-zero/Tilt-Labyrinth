@@ -24,6 +24,27 @@ public class LoadAScene : MonoBehaviour {
 
     public void goToTestLevel()
     {
+        PlayerPrefs.SetFloat("enemyDmgMultiplier", 1);
+        PlayerPrefs.SetInt("levelSize", 1);
+        PlayerPrefs.SetFloat("hitPoints", 250);
+        PlayerPrefs.SetFloat("maxHitPoints", 250);
+        PlayerPrefs.Save();
+        Application.LoadLevel("TestLevelGenerator");
+    }
+
+    public void goToContinue()
+    {
+        Application.LoadLevel("TestLevelGenerator");
+    }
+
+    public void quitToMenu()
+    {
+        PlayerPrefs.DeleteAll();
+        Application.LoadLevel("Menu");
+    }
+
+    public void nextLevel()
+    {
         Application.LoadLevel("TestLevelGenerator");
     }
 

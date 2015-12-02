@@ -13,10 +13,15 @@ public class RedTankScript : MonoBehaviour {
     private float cooldown = 0;
     public float fireRate = 0.75f;
     public float turretSpeed = 3;
+    public GameObject smoke;
+    private GameObject damaged;
+    public GameObject ringSmoke;
+    private GameObject scriptManager;
 
 	// Use this for initialization
 	void Start () {
         Invoke("ChangeRotation", 0);
+        scriptManager = GameObject.FindGameObjectWithTag("ScriptManager");
         
 	}
 	
@@ -50,6 +55,9 @@ public class RedTankScript : MonoBehaviour {
         if(!inRange)
             turret.transform.rotation = Quaternion.Slerp(turret.transform.rotation, transform.rotation, Time.deltaTime * turretSpeed);
         cooldown -= Time.deltaTime;
+
+        if (damaged != null)
+            damaged.transform.position = transform.position;
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -79,6 +87,16 @@ public class RedTankScript : MonoBehaviour {
     {
         hitPoints -= damage;
         if (hitPoints <= 0)
+        {
             Destroy(gameObject);
+            scriptManager.GetComponent<GameManager>().EnemyDown();
+            Instantiate(ringSmoke, transform.position, Quaternion.identity);
+            ParticleSystem part = damaged.GetComponent<ParticleSystem>();
+            part.enableEmission = false;
+            
+            Destroy(damaged, part.duration + part.startLifetime);
+        }
+        else if (hitPoints <= 25)
+            damaged = Instantiate(smoke);
     }
 }

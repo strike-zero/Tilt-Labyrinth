@@ -15,7 +15,7 @@ public class AccelerometerTest : MonoBehaviour {
     {
         Vector3 dir = Vector3.zero;
         dir.y = Input.acceleration.y - initTilt.y;
-        dir.x = Input.acceleration.x - initTilt.x;
+        dir.x = Input.acceleration.x;
 
         if (dir.sqrMagnitude > 1)
             dir.Normalize();

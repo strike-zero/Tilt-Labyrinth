@@ -4,34 +4,38 @@ using System.Collections;
 public class RedBulletScript : MonoBehaviour {
     public float speed = 25;
     public float decay = 3;
-    public int damage = 5;
+    public float damage = 5;
     public Rigidbody2D bullet;
+    private GameObject playerCamera;
+    public GameObject explosion;
 
     void Start()
     {
-        StartCoroutine(SelfDestruct());
+        damage = damage * PlayerPrefs.GetFloat("enemyDmgMultiplier");
+        playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
         bullet.velocity = transform.up * speed;
+        Destroy(gameObject, decay);
     }
 
-    private IEnumerator SelfDestruct()
+    void Update()
     {
-        yield return new WaitForSeconds(decay);
-        Destroy(gameObject);
+        decay -= Time.deltaTime;
+        if (decay <= 0)
+            Instantiate(explosion, transform.position, transform.rotation);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag != "Enemy")
+        if (other.gameObject.tag != "Enemy" && other.gameObject.tag != "EnemyProjectile")
         {
+            Instantiate(explosion, transform.position, transform.rotation);
             if (other.gameObject.tag == "Player")
             {
                 GameObject target = other.gameObject;
                 target.SendMessageUpwards("TakeDamage", damage);
-                Destroy(gameObject);
+                playerCamera.SendMessage("Shake");
             }
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
-
-            
     }
 }

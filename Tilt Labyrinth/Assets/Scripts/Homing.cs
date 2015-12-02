@@ -5,15 +5,24 @@ public class Homing : MonoBehaviour {
     public float missileVelocity = 100;
     public float turn = 20;
     public Rigidbody2D homingMissile;
-    public float fuseDelay;
+    public float damage = 25;
     public float delay;
     private Transform target;
     private float distance = Mathf.Infinity;
+    public GameObject explosion;
+    public GameObject smoke;
+    private GameObject smokeHolder;
 
     void Start()
     { 
         Fire();
+        smokeHolder = Instantiate(smoke);
         StartCoroutine(SelfDestruct());
+    }
+
+    void Update()
+    {
+        smokeHolder.transform.position = transform.position;
     }
 
     void FixedUpdate()
@@ -53,10 +62,18 @@ public class Homing : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag != "Player")
         {
+            GameObject boom = (GameObject) Instantiate(explosion, transform.position, transform.rotation);
+            ParticleSystem boomParticle = boom.GetComponent<ParticleSystem>();
+            Destroy(boom, boomParticle.duration + boomParticle.startLifetime);
             Destroy(gameObject);
-            Destroy(other.gameObject);
+            FadeNDestroy(smokeHolder);
+            if (other.gameObject.tag == "Enemy")
+            {
+                other.gameObject.GetComponentInParent<RedTankScript>().TakeDamage(damage);
+                Debug.Log("Enemy hit!");
+            }
         }
 
     }
@@ -64,6 +81,16 @@ public class Homing : MonoBehaviour {
     IEnumerator SelfDestruct()
     {
         yield return new WaitForSeconds(delay);
+        FadeNDestroy(smokeHolder);
         Destroy(gameObject);
+    }
+
+    void FadeNDestroy(GameObject go)
+    {
+        ParticleSystem part = go.GetComponent<ParticleSystem>();
+        part.enableEmission = false;
+
+        float decay = part.duration + part.startLifetime;
+        Destroy(go, decay);
     }
 }

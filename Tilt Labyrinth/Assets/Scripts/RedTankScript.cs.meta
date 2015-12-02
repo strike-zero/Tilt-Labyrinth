@@ -1,10 +1,14 @@
 fileFormatVersion: 2
 guid: 52f3854661a28294c80dfc171d8aa475
-timeCreated: 1446958281
+timeCreated: 1447684736
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - bullet: {fileID: 103404, guid: ceeaa43fdddf0e441bf88fc2e5773413, type: 2}
+  - body: {fileID: 5016592, guid: 762330e153aab9242a2ccbc61ce25f39, type: 2}
+  - turret: {fileID: 161440, guid: 762330e153aab9242a2ccbc61ce25f39, type: 2}
+  - smoke: {fileID: 123676, guid: 306f068bed7a3194bb54a0947fb12c83, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

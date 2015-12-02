@@ -3,37 +3,43 @@ using System.Collections;
 
 public class LevelGeneration : MonoBehaviour {
 
-    public int levelSize = 2;
-    public int roomSize = 250;
+    public int levelSize;
+    public int roomSize = 20;
     public int wallThickness = 10;
     public GameObject wall;
     public GameObject enemy1;
     public GameObject enemy2;
     public GameObject enemy3;
+    public GameObject terrainDirt;
+    public GameObject terrainSand;
+    public GameObject terrainGrass;
+    public GameObject outerBounds;
 
 	// Use this for initialization
 	void Start () {
+        levelSize = PlayerPrefs.GetInt("levelSize");
         BuildWall();
         Generator();
+        OutsideBoundaries();
+        Time.timeScale = 1;
 	}
 	
-    //generates the level layout
-    void Generator()
+    void Generator() //generates the level layout
     {
         for (int i = -levelSize; i <= levelSize; i++)
            for (int j = -levelSize; j <= levelSize; j++)
            {
                 if (i == 0 && j == 0)
-                    //starting room
-                    PresetStartRoom(i, j);
+                    PresetStartRoom(i, j); //starting room
                 else
-                    //build a random room preset
-                    BuildSection(Random.Range(1, 4), i, j);
-           }
+                    BuildSection(Random.Range(1, 2), i, j); //build a random room preset
+
+                GameObject terrain = Instantiate(terrainDirt, new Vector3(i * roomSize, j * roomSize), Quaternion.Euler(0, 0, 0)) as GameObject;
+                terrain.transform.localScale = new Vector3(roomSize,roomSize);
+            }
     }
 
-    //outside boundaries
-    void BuildWall()
+    void BuildWall() //outside boundaries
     {
         int dist = (levelSize * roomSize) + (roomSize / 2) + (wallThickness / 2);
 
@@ -96,6 +102,21 @@ public class LevelGeneration : MonoBehaviour {
         }
     }
 
+    void OutsideBoundaries()
+    {
+        outerBounds.transform.localScale = new Vector3(roomSize, roomSize);
+
+        int overSize = levelSize + 2;
+        for (int i = -overSize; i <= overSize; i++)
+            for (int j = -overSize; j <= overSize; j++)
+            {
+                if (i < -levelSize || i > levelSize)
+                    Instantiate(outerBounds, new Vector3(i * roomSize, j * roomSize), Quaternion.identity);
+                else if (j < -levelSize || j > levelSize)
+                    Instantiate(outerBounds, new Vector3(i * roomSize, j * roomSize), Quaternion.identity);
+            }
+    }
+
     //start room preset
     void PresetStartRoom(int row, int column)
     {
@@ -110,17 +131,30 @@ public class LevelGeneration : MonoBehaviour {
 
     void Preset2(int row, int column)
     {
-        Instantiate(enemy2, new Vector3(row, column), Quaternion.Euler(0, 0, 0));
+        //enemies
+        Instantiate(enemy2, new Vector3(row + 5, column + 5), Quaternion.Euler(0, 0, 0));
+        Instantiate(enemy2, new Vector3(row - 5, column + 5), Quaternion.Euler(0, 0, 0));
+        Instantiate(enemy2, new Vector3(row + 5, column - 5), Quaternion.Euler(0, 0, 0));
+        Instantiate(enemy2, new Vector3(row - 5, column - 5), Quaternion.Euler(0, 0, 0));
+
+        //doodads
     }
 
     void Preset3(int row, int column)
     {
-        Instantiate(enemy3, new Vector3(row, column), Quaternion.Euler(0, 0, 0));
+        //enemies
+        Instantiate(enemy3, new Vector3(row, column + 5), Quaternion.Euler(0, 0, 0));
+        Instantiate(enemy3, new Vector3(row, column - 5), Quaternion.Euler(0, 0, 0));
+        Instantiate(enemy3, new Vector3(row + 5, column), Quaternion.Euler(0, 0, 0));
+        Instantiate(enemy3, new Vector3(row - 5, column), Quaternion.Euler(0, 0, 0));
+
+        //doodads
     }
 
     void Preset4(int row, int column)
     {
-        Instantiate(enemy1, new Vector3(row, column), Quaternion.Euler(0, 0, 0));
+        Instantiate(enemy1, new Vector3(row + 5, column), Quaternion.Euler(0, 0, 0));
+        Instantiate(enemy1, new Vector3(row - 5, column), Quaternion.Euler(0, 0, 0));
     }
 
     void Preset5(int row, int column)
