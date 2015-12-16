@@ -1,0 +1,851 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Get",
+				"GetInt(string key)	int"
+			],
+			[
+				"h",
+				"highScore	float"
+			],
+			[
+				"score",
+				"scoreText	Text"
+			],
+			[
+				"Ma",
+				"Mathf	Mathf"
+			],
+			[
+				"Plaer",
+				"PlayerPrefs	PlayerPrefs"
+			],
+			[
+				"mul",
+				"multiplierText	Text"
+			],
+			[
+				"Player",
+				"PlayerPrefs	PlayerPrefs"
+			],
+			[
+				"ma",
+				"maxHitPoints	float"
+			],
+			[
+				"t",
+				"text	string { get; set; }"
+			],
+			[
+				"Te",
+				"Text	Text"
+			],
+			[
+				"ve",
+				"vectorToTarget"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "using UnityEngine;\nusing System.Collections;\n\npublic class Bullets : MonoBehaviour {\n    public float speed = 25;\n    public float decay = 2;\n    public float damage = 25;\n    public Rigidbody2D bullet;\n    public GameObject explosion;\n\n	void Start () {\n        Destroy(gameObject, decay);\n        bullet.velocity = transform.up * speed;\n    }\n\n\n    void OnTriggerEnter2D(Collider2D other)\n    {\n        if (other.gameObject.tag != \"Player\" && other.gameObject.tag != \"Projectile\")\n        {\n            Instantiate(explosion, transform.position, transform.rotation);\n            if (other.gameObject.tag == \"Enemy\")\n            {\n                GameObject target = other.gameObject;\n                target.SendMessageUpwards(\"TakeDamage\", damage);\n                //Destroy(gameObject);\n            }\n            Destroy(gameObject);\n        }\n\n    }\n}",
+			"file": "Assets/Scripts/Bullets.cs",
+			"file_size": 888,
+			"file_write_time": 130932833895254531,
+			"settings":
+			{
+				"buffer_size": 854,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Scripts/GameManager.cs",
+			"settings":
+			{
+				"buffer_size": 3647,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Scripts/RingSmokeScript.cs",
+			"settings":
+			{
+				"buffer_size": 234,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/Users/Sharif/OneDrive/Pathfinder/Assets/FollowCam.cs",
+			"settings":
+			{
+				"buffer_size": 371,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Package Control Messages\n========================\n\nMaterial Theme\n--------------\n\n  Material Theme for Sublime Text 3\n  https://github.com/equinusocio/material-theme\n  \n  \n  Version 1.9.7\n  ********************************************************************************\n  \n  #### UI THEME\n  \n    - New tab animation on tab hover\n    - Update JSP file icon\n    - Add stata file icon\n    - Update project tree spacing and assets\n    - Tooltip now match the active accent color\n    - Add some hover transitions on tabset controllers\n  \n  #### COLOR SCHEME\n  \n    - Fix variables color. Thanks to @alexbeletsky\n    - Improve babel JS color highlight.\n    - Improve general highlighting color. Thanks to @alexbeletsky\n",
+			"settings":
+			{
+				"buffer_size": 714,
+				"line_ending": "Windows",
+				"name": "Package Control Messages",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"file": "Assets/Scripts/LevelGeneration.cs",
+			"settings":
+			{
+				"buffer_size": 5886,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Scripts/LoadAScene.cs",
+			"settings":
+			{
+				"buffer_size": 1122,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Scripts/RedTankScript.cs",
+			"settings":
+			{
+				"buffer_size": 3497,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Scripts/TouchControl.cs",
+			"settings":
+			{
+				"buffer_size": 5879,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Scripts/PlayerHealth.cs",
+			"settings":
+			{
+				"buffer_size": 1594,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Scripts/BulletScript.cs",
+			"settings":
+			{
+				"buffer_size": 297,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 354.0,
+		"last_filter": "Package Control: ",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 646.0
+	},
+	"console":
+	{
+		"height": 94.0,
+		"history":
+		[
+			"GitSavvy",
+			"gitsavvy",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Sharif/OneDrive/Tilt Labyrinth/Tilt Labyrinth",
+		"/C/Users/Sharif/OneDrive/Tilt Labyrinth/Tilt Labyrinth/Assets",
+		"/C/Users/Sharif/OneDrive/Tilt Labyrinth/Tilt Labyrinth/Assets/Scripts"
+	],
+	"file_history":
+	[
+		"/C/Users/Sharif/Documents/HTML/uSPOT Login.html",
+		"/C/Users/Sharif/OneDrive/Hyper Slash Prototype 3D/Assets/Scripts/PlayerMovement.cs",
+		"/C/Users/Sharif/Desktop/movement.cs",
+		"/C/Users/Sharif/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Sharif/OneDrive/Tilt Labyrinth/Tilt Labyrinth/Tilt Labyrinth.sublime-project",
+		"/C/Users/Sharif/AppData/Roaming/Sublime Text 3/Packages/User/OmniSharpSublime.sublime-settings",
+		"/C/Users/Sharif/AppData/Roaming/Sublime Text 3/Packages/OmniSharp/OmniSharpSublime.sublime-settings",
+		"/C/Users/Sharif/OneDrive/Tilt Labyrinth/Tilt Labyrinth/Tilt Labyrinth.sln",
+		"/C/Users/Sharif/AppData/Roaming/Sublime Text 3/Packages/User/GitSavvy.sublime-settings",
+		"/C/Users/Sharif/AppData/Roaming/Sublime Text 3/Packages/GitSavvy/GitSavvy.sublime-settings",
+		"/C/Users/Sharif/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/Sharif/AppData/Roaming/Sublime Text 3/Packages/User/C#.sublime-settings",
+		"/C/Users/Sharif/OneDrive/Tilt Labyrinth/Tilt Labyrinth/Assets/Scripts/ContinueScript.cs",
+		"/C/Users/Sharif/OneDrive/Tilt Labyrinth/Tilt Labyrinth/Assets/Scripts/BulletScript.cs",
+		"/C/Users/Sharif/OneDrive/Tilt Labyrinth/Tilt Labyrinth/Assets/Scripts/BulletLauncher.cs",
+		"/C/Users/Sharif/AppData/Roaming/Sublime Text 3/Packages/Material Theme - White Panels/README.md",
+		"/C/Users/Sharif/Documents/My Games/Path of Exile/oftrta_v2.0.3.filter",
+		"/C/Users/Sharif/Desktop/code.cs",
+		"/C/Users/Sharif/Desktop/code.js",
+		"/C/Users/Sharif/AppData/Roaming/Sublime Text 3/Packages/User/Package Control.sublime-settings",
+		"/C/Users/Sharif/OneDrive/Hyper Slash Prototype 3D/Assets/Scripts/PlayerForceMove.cs",
+		"/C/Users/Sharif/AppData/Roaming/Sublime Text 3/Packages/User/Distraction Free.sublime-settings",
+		"/C/Users/Sharif/Documents/randomposition.cs",
+		"/C/Users/Sharif/Documents/homing.cs",
+		"/C/Users/Sharif/OneDrive/Hyper Slash Prototype 3D/Assets/Scripts/RandomMovement.cs",
+		"/C/Users/Sharif/OneDrive/Hyper Slash Prototype 3D/Assets/Scripts/PlayerHealth.cs",
+		"/C/Users/Sharif/OneDrive/Hyper Slash Prototype 3D/Assets/Scripts/GameOverScript.cs",
+		"/C/Users/Sharif/OneDrive/Hyper Slash Prototype 3D/Assets/Scripts/EnemyScript.cs",
+		"/C/Users/Sharif/OneDrive/Hyper Slash Prototype 3D/Assets/Scripts/ScoreManager.cs",
+		"/C/Users/Sharif/OneDrive/Hyper Slash Prototype 3D/Assets/Scripts/TouchMoveController.cs",
+		"/C/Users/Sharif/Downloads/Compressed/Androidv4/Android/ADB-Install-Mac.sh",
+		"/C/Users/Sharif/OneDrive/Hyper Slash Prototype 3D/Assets/Scripts/StartGameScript.cs",
+		"/C/Users/Public/Documents/Unity Projects/CGSkill Day 5/Assets/Scripts/MovePaddle.cs",
+		"/C/Users/Public/Documents/Unity Projects/2D Shooter/Assets/2dspaceshooter/Scripts/shiphealth.js",
+		"/C/Users/Public/Documents/Unity Projects/2D Shooter/Assets/2dspaceshooter/Scripts/fireanimator.js",
+		"/C/Users/Public/Documents/Unity Projects/2D Shooter/Assets/2dspaceshooter/Scripts/shipbullet.js",
+		"/C/Users/Sharif/Documents/My Games/Path of Exile/oftrta_v1.0.5.filter",
+		"/C/Users/Public/Documents/Unity Projects/2D Shooter/Assets/2dspaceshooter/Scripts/bullet.js",
+		"/C/Users/Sharif/Downloads/Video/10229.txt",
+		"/C/Users/Sharif/Documents/My Games/Path of Exile/oftrta_v1.0.4.filter",
+		"/E/sources/inf/setup.cfg",
+		"/C/Users/Sharif/Documents/My Games/Path of Exile/oftrta_v1.0.4_STR_INT.filter",
+		"/C/Users/Sharif/Documents/My Games/Path of Exile/oftrta_v1.0.filter",
+		"/C/Users/Sharif/OneDrive/Hyper Slash Prototype 3D/Assets/Scripts/DayNightController.cs",
+		"/C/Users/Sharif/Downloads/Compressed/ReShade 0.17.1 Public Beta with SweetFX 2.0 Beta 8/Sweet.fx",
+		"/C/Users/Public/Documents/Unity Projects/2D Shooter/Assets/2dspaceshooter/Scripts/playercontrols.js",
+		"/C/Users/Sharif/OneDrive/FluffShip/Assets/Scripts/spawnScript.js",
+		"/C/Users/Sharif/OneDrive/FluffShip/Assets/Scripts/spaceshipScript.js",
+		"/C/Users/Sharif/Documents/MATLAB/Untitled.m",
+		"/C/Users/Sharif/Downloads/Compressed/RetroArch-v1.0.0.2-64-bit/retroarch.cfg",
+		"/C/Users/Sharif/OneDrive/FluffShip/Assets/Scripts/bulletScript.js",
+		"/C/Users/Sharif/Downloads/Compressed/gist5a7cfffae68892621267-57e90b8cf8693a65aaf6563ce07e36ffc3790929/gist5a7cfffae68892621267-57e90b8cf8693a65aaf6563ce07e36ffc3790929/SimplePool.cs",
+		"/C/Users/Sharif/OneDrive/FluffShip/Assets/Scripts/enemyScript.js",
+		"/C/Users/Sharif/OneDrive/Hyper Slash Prototype 3D/Assets/Scripts/enemyScript.js",
+		"/C/Users/Sharif/OneDrive/Hyper Slash Prototype 3D/Assets/enemyScript.js",
+		"/C/Program Files (x86)/Steam/steamapps/common/Dark Souls Prepare to Die Edition/DATA/d3d9.fx",
+		"/C/Program Files (x86)/Steam/steamapps/common/Dark Souls Prepare to Die Edition/DATA/shader.fx",
+		"/C/Users/Sharif/Software/iCLone.5.01.0929.1.Pro/iCLone.5.01.0929.1.Pro/_zeus_.nfo",
+		"/C/Users/Sharif/Videos/Movies/Mamoru Hosoda/The Girl Who Leapt Through Time (2006) 1080p [Jpn 5.1 & Eng 5.1] Blu-ray.srt",
+		"/C/Users/Sharif/Videos/Movies/Mamoru Hosoda/Summer Wars (2009) 1080p [Jpn 5.1 & Eng] Blu-ray.srt",
+		"/C/Users/Sharif/Documents/MATLAB/Test_1_Question_1.m",
+		"/C/Users/Sharif/Documents/MATLAB/Test_1_Question_2.m",
+		"/C/Program Files (x86)/The Elder Scrolls V Skyrim/ReShade.fx",
+		"/C/Users/Sharif/Downloads/Compressed/nirsoft_package_1.19.28/NirLauncher.cfg",
+		"/C/Users/Sharif/Downloads/Compressed/nirsoft_package_1.19.28/Sysinternals/sysinternals.nlp",
+		"/C/Users/Sharif/Documents/uSPOT_autologin.js",
+		"/F/Skyrim/Unofficial Skyrim Patch-19-2-0-7/Docs/Unofficial Skyrim Patch Readme.html"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"PlayAlertSound",
+			"PlayAlertSound 1 100",
+			"Hide	#Gear - Progression - Weapon - Staves",
+			"Hide	#Gear - Progression - Weapon - Sceptres",
+			"Hide	#Gear - Progression - Weapon - Daggers",
+			"Hide	#Gear - Progression - Armour - STR/INT",
+			"Show	#Gear - Progression",
+			"#Gear - Prog",
+			"# Progression",
+			"#Progression",
+			"### Progression",
+			"### Hide"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"PlayAlertSound 1 300",
+			"Show	#Gear - Progression - Weapon - Staves",
+			"Show	#Gear - Progression - Weapon - Sceptres",
+			"Show	#Gear - Progression - Weapon - Daggers",
+			"Show	#Gear - Progression - Armour - STR/INT",
+			"Hide	#Gear - Progression"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Assets/Scripts/Bullets.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 854,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								684,
+								684
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/Material Theme/schemes/Material-Theme-OceanicNext.tmTheme",
+							"git_savvy.file_path": "C:\\Users\\Sharif\\OneDrive\\Tilt Labyrinth\\Tilt Labyrinth\\Assets\\Scripts\\Bullets.cs",
+							"git_savvy.repo_path": "C:/Users/Sharif/OneDrive/Tilt Labyrinth",
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Assets/Scripts/GameManager.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3647,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								353,
+								353
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/Material Theme/schemes/Material-Theme-OceanicNext.tmTheme",
+							"oops":
+							{
+								"163,177": "Name should have prefix '_'. (Rule 'Fields').",
+								"201,212": "Name should have prefix '_'. (Rule 'Fields').",
+								"236,249": "Name should have prefix '_'. (Rule 'Fields').",
+								"267,276": "Name should have prefix '_'. (Rule 'Fields').",
+								"296,312": "Name should have prefix '_'. (Rule 'Fields').",
+								"395,410": "Name should have prefix '_'. (Rule 'Fields').",
+								"41,46": "Using directive is not used by code and can be removed safely.",
+								"453,467": "Name should have prefix '_'. (Rule 'Fields').",
+								"485,494": "Name should have prefix '_'. (Rule 'Fields')."
+							},
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 51.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Assets/Scripts/RingSmokeScript.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 234,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								167,
+								167
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/Material Theme/schemes/Material-Theme-OceanicNext.tmTheme",
+							"oops":
+							{
+								"19,24": "Using directive is not used by code and can be removed safely."
+							},
+							"syntax": "Packages/C#/C#.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/Users/Sharif/OneDrive/Pathfinder/Assets/FollowCam.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 371,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								347,
+								347
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/Material Theme/schemes/Material-Theme-OceanicNext.tmTheme",
+							"oops":
+							{
+								"123,130": "'Vector3' is not a known identifier",
+								"200,209": "'transform' is not a known identifier",
+								"210,218": "'?' does not contain a definition for 'position'",
+								"228,237": "'GameObject' does not contain a definition for 'transform'",
+								"238,246": "Cannot convert from System.Int32 to [UnknownType Vector3]",
+								"309,318": "'transform' is not a known identifier",
+								"319,327": "'?' does not contain a definition for 'position'",
+								"337,346": "'GameObject' does not contain a definition for 'transform'",
+								"347,355": "'?' does not contain a definition for 'position'",
+								"358,364": "Cannot convert from System.Int32 to ?",
+								"6,17": "'UnityEngine' is not a known identifier",
+								"71,84": "'MonoBehaviour' is not a known identifier",
+								"95,105": "'GameObject' is not a known identifier"
+							},
+							"syntax": "Packages/C#/C#.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 714,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								714,
+								714
+							]
+						],
+						"settings":
+						{
+							"auto_indent": false,
+							"default_dir": "C:\\Users\\Sharif\\OneDrive\\Tilt Labyrinth\\Tilt Labyrinth",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_width": 2,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "Assets/Scripts/LevelGeneration.cs",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 5886,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/Material Theme/schemes/Material-Theme-OceanicNext.tmTheme",
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "Assets/Scripts/LoadAScene.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1122,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								644,
+								644
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/Material Theme/schemes/Material-Theme-OceanicNext.tmTheme",
+							"oops":
+							{
+								"104,116": "Method 'goToTutorial' can be made static.",
+								"1064,1072": "Method 'exitGame' can be made static.",
+								"19,24": "Using directive is not used by code and can be removed safely.",
+								"191,199": "Method 'goToMenu' can be made static.",
+								"270,279": "Method 'goToAbout' can be made static.",
+								"351,359": "Method 'goToPlay' can be made static.",
+								"434,447": "Method 'goToTestLevel' can be made static.",
+								"749,761": "Method 'goToContinue' can be made static.",
+								"846,856": "Method 'quitToMenu' can be made static.",
+								"970,979": "Method 'nextLevel' can be made static."
+							},
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 240.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "Assets/Scripts/RedTankScript.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3497,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								603,
+								603
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/Material Theme/schemes/Material-Theme-OceanicNext.tmTheme",
+							"oops":
+							{
+								"113,119": "Name should have prefix '_'. (Rule 'Fields').",
+								"138,143": "Name should have prefix '_'. (Rule 'Fields').",
+								"167,176": "Name should have prefix '_'. (Rule 'Fields').",
+								"19,24": "Using directive is not used by code and can be removed safely.",
+								"199,204": "Name should have prefix '_'. (Rule 'Fields').",
+								"228,237": "Name should have prefix '_'. (Rule 'Fields').",
+								"306,310": "Name should have prefix '_'. (Rule 'Fields').",
+								"334,340": "Name should have prefix '_'. (Rule 'Fields').",
+								"371,372": "Initializing field by default value is redundant",
+								"391,399": "Name should have prefix '_'. (Rule 'Fields').",
+								"426,437": "Name should have prefix '_'. (Rule 'Fields').",
+								"465,470": "Name should have prefix '_'. (Rule 'Fields').",
+								"526,535": "Name should have prefix '_'. (Rule 'Fields').",
+								"592,597": "Name should have prefix '_'. (Rule 'Fields')."
+							},
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1440.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "Assets/Scripts/TouchControl.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5879,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								667,
+								667
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/Material Theme/schemes/Material-Theme-OceanicNext.tmTheme",
+							"oops":
+							{
+								"19,24": "Using directive is not used by code and can be removed safely.",
+								"295,302": "Name should have prefix '_'. (Rule 'Fields').",
+								"327,333": "Name should have prefix '_'. (Rule 'Fields').",
+								"358,362": "Name should have prefix '_'. (Rule 'Fields').",
+								"379,391": "Name should have prefix '_'. (Rule 'Fields').",
+								"413,422": "Name should have prefix '_'. (Rule 'Fields').",
+								"444,452": "Name should have prefix '_'. (Rule 'Fields').",
+								"455,456": "Initializing field by default value is redundant",
+								"475,486": "Name should have prefix '_'. (Rule 'Fields').",
+								"523,524": "Initializing field by default value is redundant",
+								"542,546": "Name should have prefix '_'. (Rule 'Fields').",
+								"5539,5543": "Parameter can be IComparable",
+								"570,579": "'MainStick' should start with a lower case letter. (Rule 'Fields')",
+								"603,612": "'DpadStick' should start with a lower case letter. (Rule 'Fields')",
+								"631,637": "Name should have prefix '_'. (Rule 'Fields').",
+								"821,825": "Comparison of floating point numbers can be unequal due to the differing precision of the two values."
+							},
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 60.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "Assets/Scripts/PlayerHealth.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1594,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1045,
+								1045
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/Material Theme/schemes/Material-Theme-OceanicNext.tmTheme",
+							"oops":
+							{
+								"130,137": "Name should have prefix '_'. (Rule 'Fields').",
+								"1362,1364": "Convert to '?:' expression",
+								"156,160": "Name should have prefix '_'. (Rule 'Fields').",
+								"179,193": "Name should have prefix '_'. (Rule 'Fields').",
+								"19,24": "Using directive is not used by code and can be removed safely.",
+								"226,240": "Name should have prefix '_'. (Rule 'Fields').",
+								"274,288": "Name should have prefix '_'. (Rule 'Fields').",
+								"326,335": "Name should have prefix '_'. (Rule 'Fields').",
+								"354,366": "Name should have prefix '_'. (Rule 'Fields').",
+								"390,401": "Name should have prefix '_'. (Rule 'Fields').",
+								"425,434": "Name should have prefix '_'. (Rule 'Fields').",
+								"452,462": "Name should have prefix '_'. (Rule 'Fields')."
+							},
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "Assets/Scripts/BulletScript.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 297,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								119,
+								119
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/Material Theme/schemes/Material-Theme-OceanicNext.tmTheme",
+							"git_savvy.file_path": "C:\\Users\\Sharif\\OneDrive\\Tilt Labyrinth\\Tilt Labyrinth\\Assets\\Scripts\\BulletScript.cs",
+							"git_savvy.repo_path": "C:/Users/Sharif/OneDrive/Tilt Labyrinth",
+							"oops":
+							{
+								"113,120": "Name should have prefix '_'. (Rule 'Fields').",
+								"19,24": "Using directive is not used by code and can be removed safely."
+							},
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 66.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 150.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.variable_get":
+	{
+		"height": 213.0
+	},
+	"pinned_build_system": "",
+	"project": "Tilt Labyrinth.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 254.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

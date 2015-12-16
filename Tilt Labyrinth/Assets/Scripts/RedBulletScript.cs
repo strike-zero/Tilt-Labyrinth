@@ -5,13 +5,15 @@ public class RedBulletScript : MonoBehaviour {
     public float speed = 25;
     public float decay = 3;
     public float damage = 5;
+    public float multiplier = 0.25f;
     public Rigidbody2D bullet;
     private GameObject playerCamera;
     public GameObject explosion;
 
     void Start()
     {
-        damage = damage * PlayerPrefs.GetFloat("enemyDmgMultiplier");
+        int currentLevel = PlayerPrefs.GetInt("levelNum");
+        damage = damage + (damage * currentLevel * multiplier);
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
         bullet.velocity = transform.up * speed;
         Destroy(gameObject, decay);

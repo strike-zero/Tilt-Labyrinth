@@ -17,12 +17,17 @@ public class TouchControl : MonoBehaviour
     public float swipeLength = 15;
     private float swipeDist = 0;
     public Text ammo;
+    public GameObject MainStick;
+    public GameObject DpadStick;
+    public float radius = 5;
+    private Camera cam;
 
 
     void Start()
     {
         swipeLength = Screen.dpi / 3;
         Debug.Log("threshold: " + swipeLength);
+        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     void Update()
@@ -38,6 +43,11 @@ public class TouchControl : MonoBehaviour
                     {
                         leftFinger = touch.fingerId;
                         touchLeft = touch.position;
+                        MainStick.transform.position = touchLeft;
+                        DpadStick.transform.position = touchLeft;
+
+                        MainStick.SetActive(true);
+                        DpadStick.SetActive(true);
                     }
 
                     if (touch.position.x > Screen.width / 2)
@@ -55,6 +65,14 @@ public class TouchControl : MonoBehaviour
                         float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
                         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward) * Quaternion.Euler(0, 0, -90);
                         transform.rotation = Quaternion.Slerp(transform.rotation, q, 1);
+
+                        Vector2 offset = touch.position - touchLeft;
+                        //offset.Normalize();
+                        offset = Vector2.ClampMagnitude(offset,radius);
+                        //DpadStick.transform.position = Vector2.ClampMagnitude(offset,radius);
+                        DpadStick.transform.position = touchLeft + offset;
+                        Debug.Log("x = " + DpadStick.transform.position.x + ", y = " + DpadStick.transform.position.y);
+                        //DpadStick.transform.position = touch.position;
                     }
                     if (touch.fingerId == rightFinger)
                     {
@@ -66,6 +84,8 @@ public class TouchControl : MonoBehaviour
                     if (touch.fingerId == leftFinger)
                     {
                         leftFinger = -1;
+                        MainStick.SetActive(false);
+                        DpadStick.SetActive(false);
                     }
 
                     if (touch.fingerId == rightFinger)

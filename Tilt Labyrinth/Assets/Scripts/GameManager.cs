@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -7,18 +7,33 @@ public class GameManager : MonoBehaviour {
     public GameObject gameOverObject;
     public GameObject victoryText;
     public GameObject victoryObject;
+    public Text scoreText;
+    public Slider multiplierSlider;
     private bool gameEnded;
+    private float playerScore;
+    public static int scoreMultiplier;
+    private float timer;
+    public Text multiplierText;
+    public Text levelText;
+    public Text endScore;
 
 
 	void Start () {
-        //enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
         gameEnded = false;
+        scoreMultiplier = 1;
+        timer = 5;
+        int level = PlayerPrefs.GetInt("levelNum");
+        playerScore = PlayerPrefs.GetFloat("playerScore");
+        levelText.text = "LEVEL " + level;
+        scoreText.text = playerScore.ToString("00000000");
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 	    if (gameEnded)
             Time.timeScale = Mathf.Lerp(1f, 0.25f, Time.deltaTime * 70);
+
+        if (scoreMultiplier > 1)
+            MultiplierTimer();
 	}
 
     public void EnemyDown()
@@ -31,24 +46,44 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public void MultiplierTimer() {
+        timer -= Time.deltaTime;
+
+        if (timer <= 0) {
+            scoreMultiplier = 1;
+            timer = 5;
+            multiplierText.text = "X" + scoreMultiplier;
+        }
+        multiplierSlider.value = timer;
+    }
+
+    public void Score(float score) {
+        playerScore = playerScore + (score * scoreMultiplier);
+        timer = 5;
+        scoreMultiplier = Mathf.Clamp(++scoreMultiplier,1,10);
+        multiplierText.text = "X" + scoreMultiplier;
+        scoreText.text = playerScore.ToString("00000000");
+    }
+
+    public static int GetMultiplier() {
+        return scoreMultiplier;
+    }
+
     public void GameVictory()
     {
         gameEnded = true;
         //increment size
-        int currentLevel = PlayerPrefs.GetInt("levelSize");
+        int currentLevel = PlayerPrefs.GetInt("levelNum");
         currentLevel++;
-        //increase dmg multiplier
-        float enemyDmgMultiplier = PlayerPrefs.GetFloat("enemyDmgMultiplier");
-        enemyDmgMultiplier += 0.25f;
-
         float maxHitPoints = PlayerPrefs.GetFloat("maxHitPoints");
         float extraHitPoints = maxHitPoints * 0.25f;
         maxHitPoints = maxHitPoints * 1.15f;
         float hitPoints = Mathf.Clamp(PlayerHealth.GetHitPoints() + extraHitPoints, 0, maxHitPoints);
 
         PlayerPrefs.SetFloat("hitPoints", hitPoints);
-        PlayerPrefs.SetInt("levelSize", currentLevel);
-        PlayerPrefs.SetFloat("enemyDmgMultiplier", enemyDmgMultiplier);
+        PlayerPrefs.SetFloat("maxHitPoints", maxHitPoints);
+        PlayerPrefs.SetInt("levelNum", currentLevel);
+        PlayerPrefs.SetFloat("playerScore", playerScore);
         PlayerPrefs.Save();
 
         string message = "YOUR TIME IS " + FormatTime(Time.timeSinceLevelLoad);
@@ -60,6 +95,22 @@ public class GameManager : MonoBehaviour {
     {
         gameEnded = true;
         gameOverObject.SetActive(true);
+
+        if (PlayerPrefs.HasKey("highScore")){
+            float highScore = PlayerPrefs.GetFloat("highScore");
+            if (playerScore > highScore) {
+                PlayerPrefs.SetFloat("highScore", playerScore);
+                PlayerPrefs.Save();
+                endScore.text = "NEW HIGH SCORE: " + playerScore.ToString("00000000");
+            } else {
+                endScore.text = "YOUR SCORE IS: " + playerScore.ToString("00000000");
+            }
+        } else {
+            PlayerPrefs.SetFloat("highScore", playerScore);
+            PlayerPrefs.Save();
+            endScore.text = "NEW HIGH SCORE: " + playerScore.ToString("00000000");
+        }
+
     }
 
     string FormatTime(float time)

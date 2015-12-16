@@ -17,6 +17,7 @@ public class RedTankScript : MonoBehaviour {
     private GameObject damaged;
     public GameObject ringSmoke;
     private GameObject scriptManager;
+    public float score = 100;
 
 	// Use this for initialization
 	void Start () {
@@ -90,6 +91,7 @@ public class RedTankScript : MonoBehaviour {
         {
             Destroy(gameObject);
             scriptManager.GetComponent<GameManager>().EnemyDown();
+            scriptManager.GetComponent<GameManager>().Score(score);
             Instantiate(ringSmoke, transform.position, Quaternion.identity);
             ParticleSystem part = damaged.GetComponent<ParticleSystem>();
             part.enableEmission = false;

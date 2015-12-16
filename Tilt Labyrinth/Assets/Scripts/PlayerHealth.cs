@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviour {
     public float maxHitPoints;
     public GameObject gameManager;
     public GameObject ringSmoke;
+    public Text healthText;
 
     void Start()
     {
@@ -31,6 +32,7 @@ public class PlayerHealth : MonoBehaviour {
         hitPoints -= damage;
         hitPoints = Mathf.Clamp(hitPoints, 0, maxHitPoints);
         lifeBar.value = hitPoints / maxHitPoints;
+        healthText.text = "LIFE: " + Mathf.Round(hitPoints) + "/" + Mathf.Round(maxHitPoints);
         LifebarColor();
         if (hitPoints <= 0)
         {

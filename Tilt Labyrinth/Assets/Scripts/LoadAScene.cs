@@ -24,10 +24,10 @@ public class LoadAScene : MonoBehaviour {
 
     public void goToTestLevel()
     {
-        PlayerPrefs.SetFloat("enemyDmgMultiplier", 1);
-        PlayerPrefs.SetInt("levelSize", 1);
+        PlayerPrefs.SetInt("levelNum", 1);
         PlayerPrefs.SetFloat("hitPoints", 250);
         PlayerPrefs.SetFloat("maxHitPoints", 250);
+        PlayerPrefs.SetFloat("playerScore",0);
         PlayerPrefs.Save();
         Application.LoadLevel("TestLevelGenerator");
     }
@@ -39,7 +39,7 @@ public class LoadAScene : MonoBehaviour {
 
     public void quitToMenu()
     {
-        PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteKey("levelNum");
         Application.LoadLevel("Menu");
     }
 

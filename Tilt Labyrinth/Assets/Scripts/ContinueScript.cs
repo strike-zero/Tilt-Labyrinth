@@ -5,8 +5,7 @@ public class ContinueScript : MonoBehaviour {
     public GameObject continueButton;
 
 	void Start () {
-        if (PlayerPrefs.HasKey("levelSize"))
+        if (PlayerPrefs.HasKey("levelNum"))
             continueButton.SetActive(true);
-
         }
 }

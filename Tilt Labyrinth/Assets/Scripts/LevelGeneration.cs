@@ -17,7 +17,7 @@ public class LevelGeneration : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        levelSize = PlayerPrefs.GetInt("levelSize");
+        levelSize = PlayerPrefs.GetInt("levelNum");
         BuildWall();
         Generator();
         OutsideBoundaries();
