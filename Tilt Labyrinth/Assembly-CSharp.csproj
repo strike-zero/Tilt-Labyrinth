@@ -49,13 +49,16 @@
      <Compile Include="Assets\Scripts\BulletLauncher.cs" />
      <Compile Include="Assets\Scripts\BulletScript.cs" />
      <Compile Include="Assets\Scripts\Bullets.cs" />
+     <Compile Include="Assets\Scripts\ColorAlphaBlink.cs" />
      <Compile Include="Assets\Scripts\ContinueScript.cs" />
      <Compile Include="Assets\Scripts\ExplosionScript.cs" />
      <Compile Include="Assets\Scripts\FollowPlayer.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\GreyTankScript.cs" />
      <Compile Include="Assets\Scripts\Homing.cs" />
      <Compile Include="Assets\Scripts\LevelGeneration.cs" />
      <Compile Include="Assets\Scripts\LoadAScene.cs" />
+     <Compile Include="Assets\Scripts\MarkerScript.cs" />
      <Compile Include="Assets\Scripts\MissileLauncher.cs" />
      <Compile Include="Assets\Scripts\PauseScript.cs" />
      <Compile Include="Assets\Scripts\PlayerHealth.cs" />
@@ -65,6 +68,8 @@
      <Compile Include="Assets\Scripts\RingSmokeScript.cs" />
      <Compile Include="Assets\Scripts\SmokeScript.cs" />
      <Compile Include="Assets\Scripts\TouchControl.cs" />
+     <Compile Include="Assets\Scripts\Tutorial2Manager.cs" />
+     <Compile Include="Assets\Scripts\TutorialManager.cs" />
      <None Include="Assets\ProCore\Prototype\Shader\pb_TransparentOverlay.shader" />
      <None Include="Assets\Standard Assets\Prototyping\Shaders\WorldCoordDiffuse.shader" />
      <None Include="Assets\ProCore\Prototype\About\changelog.txt" />

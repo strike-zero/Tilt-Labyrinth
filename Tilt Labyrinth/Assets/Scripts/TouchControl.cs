@@ -20,14 +20,14 @@ public class TouchControl : MonoBehaviour
     public GameObject MainStick;
     public GameObject DpadStick;
     public float radius = 5;
-    private Camera cam;
+    //private Camera cam;
 
 
     void Start()
     {
         swipeLength = Screen.dpi / 3;
         Debug.Log("threshold: " + swipeLength);
-        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        //cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     void Update()
